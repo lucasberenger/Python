@@ -5,28 +5,35 @@ class Bank:
     def __init__(self, user_name):
         self.user_name = user_name
         self.balance = 1000
+        print("welcome", self.user_name)
+
     
     def start(self):
-        print("welcome", self.user_name)
         print("------- Menu ----------")
         print("--- 1.check balance ---")
         print("--- 2.deposit ---------")
         print("--- 3.withdraw --------")
         print("--- 4.exit ------------")
 
-        select = int(input("choose an option: "))
-
-        if select == 1:
-            self.check_balance()
-        elif select == 2:
-            self.deposit()
-        elif select == 3:
-            self.withdraw()
-        elif select == 4:
-            self.exit()
+        try:
+            select = int(input("choose an option: "))
+            if select == 1:
+                self.check_balance()
+            elif select == 2:
+                self.deposit()
+            elif select == 3:
+                self.withdraw()
+            elif select == 4:
+                self.exit()
+            else: 
+                raise ValueError("Invalid Option")
+        except ValueError as InvalidOption:
+            print(f"Error: {InvalidOption}. Please, select a valid option.")
+            self.start()
+           
         
     def check_balance(self):
-        print(self.balance)
+        print(f"Balance: R${self.balance}")
         self.start()
     
     def deposit(self):
